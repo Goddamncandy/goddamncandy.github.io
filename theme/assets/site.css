@@ -13,7 +13,7 @@
   --accent: #3a4bd1;
   --shadow-soft: 0 1px 2px rgba(29, 32, 37, .04), 0 8px 24px rgba(29, 32, 37, .05);
   --shadow-orb: 0 6px 14px rgba(29, 32, 37, .22), 0 2px 4px rgba(29, 32, 37, .12);
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --sans: "Mulish", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
@@ -31,6 +31,7 @@ a:hover { text-decoration-color: var(--ink); }
 
 /* Рамка страницы */
 .frame {
+  position: relative;
   max-width: 1120px;
   margin: 28px auto;
   background: var(--frame);
@@ -39,9 +40,9 @@ a:hover { text-decoration-color: var(--ink); }
   overflow: hidden;
 }
 
-.draftbar { font-size: 12px; text-align: center; color: var(--ink-3); padding: 8px 16px; border-bottom: 1px solid var(--line); }
 
-.top { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 22px 32px; flex-wrap: wrap; position: relative; z-index: 2; }
+.top { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 22px 32px; flex-wrap: wrap; position: absolute; top: 0; left: 0; right: 0; z-index: 3; background: none; }
+.top + main > :first-child:not(.hero) { padding-top: 120px; }   /* внутренние страницы: место под шапкой */
 .brand { font-weight: 500; font-size: 15px; text-decoration: none; letter-spacing: -.01em; }
 .nav { display: flex; gap: 22px; }
 .nav a { font-size: 14px; color: var(--ink-2); text-decoration: none; }
@@ -52,7 +53,8 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -.025em; line-height: 
 h1 { font-size: clamp(34px, 5.2vw, 54px); max-width: 15em; margin-inline: auto; }
 h1 em, .h2 em {
   font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 1.12em; letter-spacing: -.01em;
+  font-size: 1.06em; letter-spacing: -.01em;   /* строчные у засечкового ниже — подтянуто до высоты Mulish */
+  color: var(--ink-2);   /* курсив бледнее основного текста, но читается: контраст ≈ 6:1 */
 }
 .h1--article { font-size: clamp(28px, 4vw, 40px); max-width: 20em; }
 .h2 { font-size: clamp(26px, 3.4vw, 36px); }
@@ -81,6 +83,9 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 }
 .pill a { color: inherit; }
 .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(58, 75, 209, .14); }
+/* точка с меткой: тот же голубой круг с ореолом, внутри белая метка */
+.dot--pin { width: 16px; height: 16px; display: grid; place-items: center; flex: none; }
+.dot--pin .pin { width: 10px; height: 10px; color: #fff; }
 .tag { display: inline-block; font-size: 12px; color: var(--ink-2); padding: 4px 11px; border-radius: 999px; background: var(--frame); border: 1px solid var(--line); }
 
 /* Кнопки */
@@ -97,7 +102,12 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .btn--ghost { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-soft); }
 
 /* Первый экран: туман и орбиты */
-.hero { position: relative; text-align: center; padding: 56px 24px 80px; overflow: hidden; }
+.hero {
+  position: relative; text-align: center; overflow: hidden;
+  min-height: calc(100svh - 56px);   /* высота экрана минус поля рамки */
+  display: flex; align-items: center; justify-content: center;
+  padding: 96px 24px 72px;
+}
 .hero__in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 .hero__in .pill { margin: 22px 0 22px; }
 
@@ -241,7 +251,7 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 @media (max-width: 720px) {
   .frame { margin: 0; border-radius: 0; }
   .top { padding: 18px 16px; }
-  .hero { padding: 40px 16px 56px; }
+  .hero { min-height: 100svh; padding: 80px 16px 56px; }
   .steps { grid-template-columns: 1fr; padding: 0 16px; gap: 28px; }
   .sec { padding: 56px 16px; }
   .intro { padding: 88px 16px 80px; }
@@ -253,3 +263,5 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
   .foot { padding: 20px 16px; }
   .btn { flex: 1 1 100%; }
 }
+
+[hidden] { display: none !important; }

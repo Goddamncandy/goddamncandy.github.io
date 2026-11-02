@@ -4,7 +4,7 @@ clusters:
 - id: kak-zadavat-voprosy
   direction: rasklad
   intent: informational
-  stage: written
+  stage: published
   page_type: article
   money_distance: 1
   cta_service: rasklad
@@ -23,7 +23,7 @@ clusters:
 - id: s-chego-nachinaetsya
   direction: rasklad
   intent: informational
-  stage: published
+  stage: rejected
   page_type: article
   money_distance: 1
   cta_service: rasklad
@@ -32,6 +32,6 @@ clusters:
   keys:
   - phrase: с чего начинается расклад таро
     count_wide: 14
-  note: ''
+  note: 'не статья блога: 02.11 Антон перенёс её в страницу о методе /metod/'
   regions: []
   slug: s-chego-nachinaetsya-rasklad
