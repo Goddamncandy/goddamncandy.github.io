@@ -1,0 +1,37 @@
+# Реестр кластеров. Ведёт `lifeos articles`; правило — один кластер = один адрес.
+managed_by: lifeos articles
+clusters:
+- id: kak-zadavat-voprosy
+  direction: rasklad
+  intent: informational
+  stage: written
+  page_type: article
+  money_distance: 1
+  cta_service: rasklad
+  target_url: /blog/kak-zadavat-voprosy-kartam-taro/
+  total_count: 6283
+  keys:
+  - phrase: как задавать вопросы картам таро
+    count_wide: 3710
+  - phrase: как правильно задавать вопросы таро
+    count_wide: 3258
+  - phrase: как задать вопрос таро
+    count_wide: 6283
+  note: ''
+  regions: []
+  slug: kak-zadavat-voprosy-kartam-taro
+- id: s-chego-nachinaetsya
+  direction: rasklad
+  intent: informational
+  stage: published
+  page_type: article
+  money_distance: 1
+  cta_service: rasklad
+  target_url: /blog/s-chego-nachinaetsya-rasklad/
+  total_count: 14
+  keys:
+  - phrase: с чего начинается расклад таро
+    count_wide: 14
+  note: ''
+  regions: []
+  slug: s-chego-nachinaetsya-rasklad

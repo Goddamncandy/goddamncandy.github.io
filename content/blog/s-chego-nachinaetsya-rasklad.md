@@ -1,5 +1,7 @@
 ---
 type: article
+cluster: s-chego-nachinaetsya
+cta_service: rasklad
 slug: s-chego-nachinaetsya-rasklad
 title: "С чего начинается расклад: почему ответ появляется, пока формулируешь вопрос"
 description: "Почему на раскладе таро первым делом ищут вопрос, что мешает его задать и как карты показывают точку напряжения, которая стопорит ситуацию."
