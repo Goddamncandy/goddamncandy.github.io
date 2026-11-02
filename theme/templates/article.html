@@ -1,0 +1,11 @@
+<article class="sec">
+  <div class="wrap narrow">
+    <header class="pagehead">
+      <span class="kicker"><a href="{{ .BaseURL }}/blog/">Блог</a>{{ if .FM.published_at }} · <time datetime="{{ .FM.published_at }}">{{ if .FM.date_label }}{{ .FM.date_label }}{{ else }}{{ .FM.published_at }}{{ end }}</time>{{ end }}</span>
+      <h1>{{ .Page.Title }}</h1>
+      {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
+    </header>
+    <div class="prose">{{ .Body }}</div>
+  </div>
+</article>
+{{ template "cta.html" . }}

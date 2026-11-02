@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="{{ .AssetsBase }}/site.css" />
+  <link rel="icon" href="{{ .AssetsBase }}/favicon.svg" />
+  {{- if .Page.Description }}
+  <meta name="description" content="{{ .Page.Description }}" />
+  {{- end }}
+  {{- /* Пока settings.closed не пуст, сайт закрыт от поиска целиком — и здесь, и в robots (config.yaml). */}}
+  {{- if .Settings.closed }}
+  <meta name="robots" content="noindex,nofollow" />
+  {{- else if .Meta.Robots }}
+  <meta name="robots" content="{{ .Meta.Robots }}" />
+  {{- end }}
+  {{- if .Canonical }}
+  <link rel="canonical" href="{{ .Canonical }}" />
+  {{- end }}
+  {{- range .Meta.OpenGraph }}
+  <meta property="{{ .Key }}" content="{{ .Value }}" />
+  {{- end }}
+  <title>{{ .Title }}</title>
+</head>
+<body>
+{{- if .Settings.closed }}
+<div class="draftbar">Черновик. Сайт закрыт от поиска, тексты ещё не утверждены.</div>
+{{- end }}
+<header class="top">
+  <div class="wrap top__in">
+    <a class="brand" href="{{ .BaseURL }}/">{{ .Settings.name }}</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="{{ .BaseURL }}/rasklad/"{{ if eq .Page.Slug "rasklad" }} aria-current="page"{{ end }}>Расклад</a>
+      <a href="{{ .BaseURL }}/blog/"{{ if eq .Page.Type "blog" }} aria-current="page"{{ end }}>Блог</a>
+      <a href="https://t.me/{{ .Settings.channel }}">Канал</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+{{ .Body }}
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>{{ .Settings.name }} · {{ .Settings.city }} и онлайн</span>
+    <span><a href="https://t.me/{{ .Settings.tg }}">Записаться в Telegram</a> · <a href="https://t.me/{{ .Settings.channel }}">Канал</a></span>
+  </div>
+</footer>
+</body>
+</html>

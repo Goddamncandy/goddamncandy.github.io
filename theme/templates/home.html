@@ -1,0 +1,39 @@
+{{- /* Главная: мысль из поста «С чего начинается расклад» → как проходит → формат и цена → блог.
+       Тексты — в content/home.md: свойства и тело страницы. */ -}}
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">{{ .FM.kicker }}</span>
+    <h1>{{ .Page.Title }}</h1>
+    <p class="lead">{{ .FM.lead }}</p>
+    <div class="actions">
+      <a class="btn" href="https://t.me/{{ .Settings.tg }}">Записаться — {{ .Settings.price }}</a>
+      <a class="btn btn--ghost" href="{{ .BaseURL }}/rasklad/">Как проходит расклад</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap"><div class="prose">
+{{ .Body }}
+  </div></div>
+</section>
+
+{{- with .Collections.posts_recent.Items }}
+<section class="sec sec--alt">
+  <div class="wrap">
+    <h2 class="h2">Из блога</h2>
+    <div class="cards">
+      {{- range . }}
+      <a class="card" href="{{ printf "%s%s" $.BaseURL .PublicPath }}">
+        {{- if .FM.date_label }}<span class="card__date">{{ .FM.date_label }}</span>{{ end }}
+        <span class="card__title">{{ .Title }}</span>
+        <span class="card__text">{{ .Description }}</span>
+      </a>
+      {{- end }}
+    </div>
+    <p class="more"><a href="{{ $.BaseURL }}/blog/">Все записи</a></p>
+  </div>
+</section>
+{{- end }}
+
+{{ template "cta.html" . }}

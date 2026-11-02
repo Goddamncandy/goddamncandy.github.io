@@ -1,0 +1,83 @@
+version: 1
+
+fields:
+  required: ["type", "slug", "title"]
+  optional:
+    - description
+    - draft
+    - noindex
+    - lead            # вводный абзац под заголовком
+    - kicker          # строка над заголовком
+    - published_at    # дата статьи: "2026-11-02" — по ней лента сортируется
+    - date_label      # та же дата словами: "2 ноября 2026"
+  defaults:
+    draft: false
+
+fm_schema:
+  draft: boolean
+  noindex: boolean
+
+types:
+  home:
+    template: "home.html"
+    permalink: "/"
+    include_in: { sitemap: true, search: false }
+  page:            # текстовая страница: о раскладе, обо мне
+    template: "page.html"
+    permalink: "/{{ slug }}/"
+    include_in: { sitemap: true, search: true }
+  blog:            # лента блога — одна
+    template: "blog.html"
+    permalink: "/blog/"
+    include_in: { sitemap: true, search: false }
+  article:         # статья блога: файл в content/blog/
+    template: "article.html"
+    permalink: "/blog/{{ slug }}/"
+    include_in: { sitemap: true, search: true }
+
+links:
+  - name: "wiki"
+    kind: "wikilinks"
+    from_types: ["home", "page", "blog", "article"]
+    resolve_by: "wikimap"
+
+collections:
+  posts_all:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - type_in: ["article"]
+    sort: { by: "fm.published_at", dir: "desc", nulls_last: true }
+    limit: 500
+  posts_recent:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - type_in: ["article"]
+    sort: { by: "fm.published_at", dir: "desc", nulls_last: true }
+    limit: 3
+
+sitemap:
+  include_types: ["home", "page", "blog", "article"]
+  exclude_drafts: true
+
+search:
+  include_types: ["page", "article"]
+  exclude_drafts: true
+  fields_boost: { title: 3, description: 2, body: 1 }
+  preview: { from: "description", max_len: 180 }
+
+validation:
+  single_page_of_type:
+    home: 1
+    blog: 1
+  duplicate_route: { action: "error" }
+  unknown_type: { action: "error" }
+  unique_slug: { action: "error" }
+  permalink_requires_slug: { action: "error" }
+  missing_template: { action: "error" }
+  materialize_requires_limit: true

@@ -1,0 +1,18 @@
+<section class="sec">
+  <div class="wrap narrow">
+    <header class="pagehead">
+      <h1>{{ .Page.Title }}</h1>
+      {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
+    </header>
+    <div class="list">
+      {{- range .Collections.posts_all.Items }}
+      <a class="row" href="{{ printf "%s%s" $.BaseURL .PublicPath }}">
+        {{- if .FM.date_label }}<span class="card__date">{{ .FM.date_label }}</span>{{ end }}
+        <span class="card__title">{{ .Title }}</span>
+        <span class="card__text">{{ .Description }}</span>
+      </a>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{ template "cta.html" . }}

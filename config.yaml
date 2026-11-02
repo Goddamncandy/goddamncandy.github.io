@@ -1,0 +1,63 @@
+# Сайт Веры Ложкиной: аналитические расклады на таро и блог. Публикуется GitHub Pages из репозитория
+# Goddamncandy/goddamncandy.github.io на домене veralozhkina.ru. Локальный просмотр — config.dev.yaml и scripts/preview.sh.
+site:
+  id: vera-site
+  base_url: "https://veralozhkina.ru"
+  title: "Вера Ложкина — аналитические расклады на таро"
+  description: "Расклады на таро как способ посмотреть на ситуацию иначе: через символы, в духе аналитической психологии Юнга. Ижевск и онлайн."
+  default_og_image: ""
+  media_base_url: "https://veralozhkina.ru/media"
+  host: 127.0.0.1
+
+runtime:
+  mode: "prod"
+  dev:
+    base_url: "http://127.0.0.1:8089"
+    media_base_url: "http://127.0.0.1:8089/media"
+
+content:
+  source: "local"
+  local_dir: "./content"
+
+markdown:
+  html_policy: "safe"
+
+og_type_by_type:
+  home: "website"
+  page: "website"
+  blog: "website"
+  article: "article"
+
+paths:
+  file_root: ./.notepub
+  artifacts_dir: ./.notepub/artifacts
+  snapshot_file: ./.notepub/snapshot/objects.json
+  cache_root: ./.notepub/cache
+
+theme:
+  dir: .
+  name: "theme"
+  templates_subdir: templates
+  assets_subdir: assets
+
+server:
+  listen: "127.0.0.1:8089"
+
+rules_path: ./rules.yaml
+
+# Слова и контакты, которые печатает шаблон. Тот же блок — в config.dev.yaml.
+settings:
+  name: "Вера Ложкина"
+  city: "Ижевск"
+  tg: "everveyra"            # личка для записи, без @
+  channel: "everveyratarot"  # канал, без @
+  price: "3 000 ₽"
+  closed: "yes"              # пока Вера не утвердила тексты: сайт закрыт от поиска и с плашкой «черновик»;
+                             # открыть — оставить пустым и убрать "/" из robots ниже
+
+robots:
+  disallow: ["/"]
+
+cache:
+  html_ttl_seconds: 600
+  stale_if_error_seconds: 604800
