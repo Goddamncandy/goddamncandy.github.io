@@ -145,6 +145,20 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .pagehead .pill { margin: 18px 0 18px; }
 .pagehead > .orb + h1 { margin-top: 22px; }
 
+/* Вопрос с фото */
+.intro { display: grid; grid-template-columns: 260px minmax(0, 440px); gap: 56px; justify-content: center; align-items: center; padding-bottom: 40px; }
+.intro__photo {
+  position: relative; width: 260px; aspect-ratio: 1; border-radius: 50%;
+  padding: 8px; background: var(--surface); box-shadow: var(--shadow-soft);
+}
+.intro__photo::after {   /* тонкое кольцо — как ещё одна орбита */
+  content: ""; position: absolute; inset: -18px; border-radius: 50%;
+  border: 1px solid var(--ink); opacity: .07;
+}
+.intro__photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 22%; display: block; filter: saturate(.85); }
+.intro__text p { color: #3c424a; font-size: 15.5px; margin: 16px 0 0; }
+.sec--tight { padding-top: 40px; }
+
 /* Карточка с текстом */
 .panel {
   position: relative; max-width: 620px; margin: 0 auto;
@@ -169,11 +183,8 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .facts dd { margin: 0; color: var(--ink-2); }
 
 .sign { display: flex; align-items: center; gap: 12px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
-.sign__av {
-  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
-  background: linear-gradient(145deg, #dfe3e8, #c9ced6); color: var(--ink);
-  font: italic 500 18px/1 var(--serif);
-}
+.sign__av { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; }
+.sign--bare { border-top: 0; padding-top: 0; margin-top: 22px; }
 .sign b { display: block; font-weight: 600; font-size: 13.5px; }
 .sign small { display: block; font-size: 12px; color: var(--ink-3); }
 
@@ -232,6 +243,9 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
   .steps { grid-template-columns: 1fr; padding: 0 16px; gap: 28px; }
   .sec { padding: 64px 16px; }
   .panel { padding: 28px 20px 24px; }
+  .intro { grid-template-columns: 1fr; gap: 36px; justify-items: center; text-align: center; }
+  .intro__photo { width: 200px; }
+  .sign--bare { justify-content: center; }
   .orb--corner { right: 12px; }
   .foot { padding: 20px 16px; }
   .btn { flex: 1 1 100%; }

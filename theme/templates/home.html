@@ -1,4 +1,4 @@
-{{- /* Главная: первый экран → три шага → подход (тело content/home.md) → точка напряжения → блог → запись.
+{{- /* Главная: первый экран → три шага → вопрос с фото → подход (тело content/home.md) → точка напряжения → блог → запись.
        Тексты первого экрана и блока «точка напряжения» — свойства в content/home.md. */ -}}
 <section class="hero">
   <div class="fog" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -33,7 +33,20 @@
   </div>
 </section>
 
-<section class="sec">
+<section class="sec intro reveal">
+  <div class="intro__photo">
+    <img src="{{ .AssetsBase }}/vera.jpg" width="720" height="720" alt="{{ .Settings.name }} за столом с картами таро" loading="lazy" />
+  </div>
+  <div class="intro__text">
+    <h2 class="h2">{{ .FM.intro_a }} <em>{{ .FM.intro_em }}</em></h2>
+    <p>{{ .FM.intro_text }}</p>
+    <div class="sign sign--bare">
+      <span><b>{{ .Settings.name }}</b><small>аналитические расклады на таро</small></span>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--tight">
   <article class="panel reveal">
     <span class="orb orb--corner">{{ template "icon-mark" }}</span>
     <span class="tag">Подход</span>
@@ -45,10 +58,6 @@
       <div><dt>Длительность</dt><dd>около часа</dd></div>
       <div><dt>Стоимость</dt><dd>{{ .Settings.price }}</dd></div>
     </dl>
-    <div class="sign">
-      <span class="sign__av">В</span>
-      <span><b>{{ .Settings.name }}</b><small>аналитические расклады на таро</small></span>
-    </div>
   </article>
 </section>
 
