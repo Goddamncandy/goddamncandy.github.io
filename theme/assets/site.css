@@ -41,7 +41,7 @@ a:hover { text-decoration-color: var(--ink); }
 
 .draftbar { font-size: 12px; text-align: center; color: var(--ink-3); padding: 8px 16px; border-bottom: 1px solid var(--line); }
 
-.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 32px; flex-wrap: wrap; position: relative; z-index: 2; }
+.top { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 22px 32px; flex-wrap: wrap; position: relative; z-index: 2; }
 .brand { font-weight: 500; font-size: 15px; text-decoration: none; letter-spacing: -.01em; }
 .nav { display: flex; gap: 22px; }
 .nav a { font-size: 14px; color: var(--ink-2); text-decoration: none; }
