@@ -35,3 +35,73 @@ clusters:
   note: 'не статья блога: 02.11 Антон перенёс её в страницу о методе /metod/'
   regions: []
   slug: s-chego-nachinaetsya-rasklad
+- id: voprosy-otnosheniya
+  direction: rasklad
+  intent: informational
+  stage: published
+  page_type: article
+  money_distance: 1
+  cta_service: rasklad
+  target_url: /blog/voprosy-taro-na-otnosheniya/
+  total_count: 5229
+  keys:
+  - phrase: вопросы таро на отношения
+    count_wide: 5229
+  - phrase: как задать вопрос таро про отношения
+    count_wide: 487
+  - phrase: как правильно задать вопрос таро про отношения
+    count_wide: 359
+  note: 'углубляет правило 1 первой статьи: капля масла, проекция (method.md, идеи 3–4)'
+  regions: &id001 []
+  slug: voprosy-taro-na-otnosheniya
+- id: verit-li-taro
+  direction: rasklad
+  intent: informational
+  stage: published
+  page_type: article
+  money_distance: 2
+  cta_service: rasklad
+  target_url: /blog/verit-li-kartam-taro/
+  total_count: 1290
+  keys:
+  - phrase: верить ли картам таро
+    count_wide: 1290
+  - phrase: почему таро сбывается
+    count_wide: 147
+  note: ''
+  regions: *id001
+  slug: verit-li-kartam-taro
+- id: kak-rabotaet-taro
+  direction: rasklad
+  intent: informational
+  stage: published
+  page_type: article
+  money_distance: 2
+  cta_service: rasklad
+  target_url: /blog/kak-rabotaet-taro/
+  total_count: 1792
+  keys:
+  - phrase: как работает таро
+    count_wide: 1792
+  note: ''
+  regions: *id001
+  slug: kak-rabotaet-taro
+- id: kak-vybrat-kolodu
+  direction: rasklad
+  intent: informational
+  stage: planned
+  page_type: article
+  money_distance: 2
+  cta_service: rasklad
+  target_url: /blog/kak-vybrat-kolodu-taro/
+  total_count: 142
+  keys:
+  - phrase: какую колоду таро выбрать
+    count_wide: 76
+  - phrase: колоды таро для начинающих
+    count_wide: 142
+  note: Вера выбирает колоду по настроению; колоды — оболочки одних архетипов
+  facts_files:
+  - ../vera-life/projects/method.md#Колоды
+  regions: *id001
+  slug: kak-vybrat-kolodu-taro
