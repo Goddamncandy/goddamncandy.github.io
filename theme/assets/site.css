@@ -14,6 +14,10 @@
   --shadow-soft: 0 1px 2px rgba(29, 32, 37, .04), 0 8px 24px rgba(29, 32, 37, .05);
   --shadow-orb: 0 6px 14px rgba(29, 32, 37, .22), 0 2px 4px rgba(29, 32, 37, .12);
   --sans: "Mulish", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  /* ритм: у каждой секции половина шага сверху и снизу, между любыми соседними — ровно один шаг */
+  --gap: 112px;
+  --pad-x: 24px;
+  --head: 72px;          /* высота шапки, которая лежит поверх страницы */
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 }
 
@@ -42,7 +46,7 @@ a:hover { text-decoration-color: var(--ink); }
 
 
 .top { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 22px 32px; flex-wrap: wrap; position: absolute; top: 0; left: 0; right: 0; z-index: 3; background: none; }
-.top + main > :first-child:not(.hero) { padding-top: 120px; }   /* внутренние страницы: место под шапкой */
+.top + main > :first-child:not(.hero) { padding-top: calc(var(--head) + var(--gap) / 2); }   /* внутренние страницы: место под шапкой */
 .brand { font-weight: 500; font-size: 15px; text-decoration: none; letter-spacing: -.01em; }
 .nav { display: flex; gap: 22px; }
 .nav a { font-size: 14px; color: var(--ink-2); text-decoration: none; }
@@ -83,13 +87,13 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 }
 .pill a { color: inherit; }
 .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(58, 75, 209, .14); }
-/* точка с меткой: тот же голубой круг с ореолом, внутри белая метка */
-.dot--pin { width: 16px; height: 16px; display: grid; place-items: center; flex: none; }
-.dot--pin .pin { width: 10px; height: 10px; color: #fff; }
+/* метка места: синяя иконка на бледном голубом круге, без яркой заливки */
+.dot--pin { width: 20px; height: 20px; display: grid; place-items: center; flex: none; background: rgba(58, 75, 209, .12); box-shadow: none; }
+.dot--pin .pin { width: 12px; height: 12px; color: var(--accent); }
 .tag { display: inline-block; font-size: 12px; color: var(--ink-2); padding: 4px 11px; border-radius: 999px; background: var(--frame); border: 1px solid var(--line); }
 
 /* Кнопки */
-.actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 44px; padding: 0 22px; border-radius: 999px;
@@ -103,15 +107,17 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 
 /* Первый экран: туман и орбиты */
 .hero {
-  position: relative; text-align: center; overflow: hidden;
+  position: relative; z-index: 0; text-align: center;
   min-height: calc(100svh - 56px);   /* высота экрана минус поля рамки */
   display: flex; align-items: center; justify-content: center;
-  padding: 96px 24px 72px;
+  padding: calc(var(--head) + 24px) var(--pad-x) calc(var(--gap) / 2);
+  /* без overflow: орбиты и туман не срезаются границей секции, а гаснут сами (маски ниже) */
 }
 .hero__in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 .hero__in .pill { margin: 22px 0 22px; }
 
-.fog { position: absolute; inset: -20% -10%; pointer-events: none; }
+.fog { position: absolute; inset: -20% -10%; pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 60%, transparent); mask-image: radial-gradient(closest-side, #000 60%, transparent); }
 .fog span {
   position: absolute; border-radius: 50%; filter: blur(60px);
   background: radial-gradient(closest-side, rgba(214, 219, 226, .9), rgba(214, 219, 226, 0));
@@ -131,6 +137,7 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .orbits {
   position: absolute; left: 50%; top: 50%; width: min(1000px, 140%); height: auto;
   transform: translate(-50%, -50%); pointer-events: none;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent); mask-image: radial-gradient(closest-side, #000 55%, transparent);
   fill: none; stroke: var(--ink); stroke-opacity: .07; stroke-width: 1;
 }
 .orbits circle { fill: var(--ink); fill-opacity: .28; stroke: none; }
@@ -148,15 +155,15 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .step p { margin: 6px 0 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
 
 /* Разделы */
-.sec { padding: 72px 24px; }   /* общий ритм; секция с фото — просторнее */
+.sec { position: relative; z-index: 1; padding: calc(var(--gap) / 2) var(--pad-x); }
 .sec--center { text-align: center; }
 .sec--center .tag { margin-bottom: 16px; }
-.pagehead { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 44px; }
+.pagehead { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
 .pagehead .pill { margin: 18px 0 18px; }
 .pagehead > .orb + h1 { margin-top: 22px; }
 
 /* Вопрос с фото */
-.intro { display: grid; grid-template-columns: 280px minmax(0, 440px); gap: 88px; justify-content: center; align-items: center; padding: 136px 24px 128px; }
+.intro { display: grid; grid-template-columns: 280px minmax(0, 440px); gap: 88px; justify-content: center; align-items: center; }
 .intro__photo {
   position: relative; width: 280px; aspect-ratio: 1; border-radius: 50%;
   padding: 8px; background: var(--surface); box-shadow: var(--shadow-soft);
@@ -167,7 +174,6 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 }
 .intro__photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 22%; display: block; filter: saturate(.85); }
 .intro__text p { color: #3c424a; font-size: 15.5px; line-height: 1.8; margin: 22px 0 0; }
-.sec--tight { padding-top: 0; }
 
 /* Карточка с текстом */
 .panel {
@@ -175,7 +181,7 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
   background: var(--surface); border-radius: 18px; box-shadow: var(--shadow-soft);
   padding: 34px 36px 30px;
 }
-.panel > .tag { margin-bottom: 18px; }
+.panel > .tag { margin-bottom: 16px; }
 /* последний абзац карточки на главной — примечание, а не продолжение рассуждения */
 .panel--note .prose > p:last-child { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
 .prose > * + * { margin-top: .9em; }
@@ -187,6 +193,10 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .prose li + li { margin-top: .5em; }
 .prose li::marker { color: var(--ink-3); }
 .prose strong { font-weight: 600; color: var(--ink); }
+.prose table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.prose th { text-align: left; font-weight: 600; font-size: 12.5px; color: var(--ink-3); padding: 0 12px 8px 0; border-bottom: 1px solid var(--line); }
+.prose td { vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); color: #3c424a; }
+.prose td:first-child { color: var(--ink-3); width: 40%; }
 
 .facts { margin: 26px 0 0; display: grid; gap: 6px; font-size: 14.5px; }
 .facts div { display: flex; gap: 8px; }
@@ -197,11 +207,13 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 .sign { display: flex; align-items: center; gap: 12px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
 .sign__av { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; }
 .sign--bare { border-top: 0; padding-top: 0; margin-top: 22px; }
+a.sign { text-decoration: none; color: inherit; }
+a.sign:hover b { text-decoration: underline; text-underline-offset: 3px; }
 .sign b { display: block; font-weight: 600; font-size: 13.5px; }
 .sign small { display: block; font-size: 12px; color: var(--ink-3); }
 
 /* Точка напряжения */
-.tension { margin: 36px auto 0; max-width: 680px; color: var(--ink); }
+.tension { margin: 32px auto 0; max-width: 680px; color: var(--ink); }
 .tension svg { width: 100%; height: auto; display: block; overflow: visible; }
 .tension path { fill: none; stroke-width: 1; vector-effect: non-scaling-stroke; }
 .tension__lines { opacity: .22; }
@@ -233,7 +245,7 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 
 /* Запись */
 .cta { border-top: 1px solid var(--line); }
-.cta .orb { margin-bottom: 22px; }
+.cta .orb { margin-bottom: 20px; }
 
 .foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 22px 32px; font-size: 13px; color: var(--ink-3); border-top: 1px solid var(--line); }
 .foot a { color: var(--ink-2); text-decoration: none; }
@@ -250,11 +262,10 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
 
 @media (max-width: 720px) {
   .frame { margin: 0; border-radius: 0; }
+  :root { --gap: 72px; --pad-x: 16px; --head: 60px; }
   .top { padding: 18px 16px; }
-  .hero { min-height: 100svh; padding: 80px 16px 56px; }
+  .hero { min-height: 100svh; }
   .steps { grid-template-columns: 1fr; padding: 0 16px; gap: 28px; }
-  .sec { padding: 56px 16px; }
-  .intro { padding: 88px 16px 80px; }
   .panel { padding: 28px 20px 24px; }
   .intro { grid-template-columns: 1fr; gap: 48px; justify-items: center; text-align: center; }
   .intro__photo { width: 200px; }

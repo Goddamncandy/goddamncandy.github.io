@@ -6,10 +6,10 @@
   </header>
   <article class="panel">
     <div class="prose">{{ .Body }}</div>
-    <div class="sign">
+    <a class="sign" href="{{ .BaseURL }}/" title="На главную">
       <img class="sign__av" src="{{ .AssetsBase }}/vera.jpg" width="34" height="34" alt="" />
       <span><b>{{ .Settings.name }}</b><small>аналитические расклады на таро</small></span>
-    </div>
+    </a>
   </article>
 </section>
 {{ template "cta.html" . }}
