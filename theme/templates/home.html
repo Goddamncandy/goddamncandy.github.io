@@ -2,8 +2,8 @@
        Тексты первого экрана и блока «точка напряжения» — свойства в content/home.md. */ -}}
 <section class="hero">
   <div class="fog" aria-hidden="true"><span></span><span></span><span></span></div>
-  {{ template "orbits.html" . }}
   <div class="hero__in">
+    {{ template "graph.html" . }}
     <span class="orb orb--lg">{{ template "icon-mark" }}</span>
     <span class="pill"><i class="dot dot--pin">{{ template "icon-pin" }}</i>{{ .FM.kicker }}</span>
     <h1>{{ .FM.h1_a }} <em>{{ .FM.h1_em }}</em></h1>

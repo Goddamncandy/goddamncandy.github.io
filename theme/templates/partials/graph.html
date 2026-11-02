@@ -1,0 +1,40 @@
+{{- /* Граф вопросов на первом экране: центр — человек (тёмный значок над заголовком), от него расходятся
+       варианты, у части — вопросы. Ветви прорисовываются при загрузке, потом по очереди подсвечиваются. */ -}}
+<svg class="graph" viewBox="-600 -260 1200 820" aria-hidden="true">
+  <path class="g-edge" style="--i:0" d="M0 0 Q-108 -92 -250 -95"/>
+  <path class="g-edge" style="--i:1" d="M0 0 Q139 -9 240 -105"/>
+  <path class="g-edge" style="--i:2" d="M0 0 Q-246 -55 -470 60"/>
+  <path class="g-edge" style="--i:3" d="M0 0 Q222 120 470 70"/>
+  <path class="g-edge" style="--i:4" d="M0 0 Q-209 111 -300 330"/>
+  <path class="g-edge" style="--i:5" d="M0 0 Q92 231 310 350"/>
+  <path class="g-edge g-edge--q" style="--i:6;--q:0" d="M-250 -95 Q-343 -97 -420 -150"/>
+  <path class="g-edge" style="--i:7" d="M-250 -95 Q-277 -40 -330 -10"/>
+  <path class="g-edge g-edge--q" style="--i:8;--q:1" d="M240 -105 Q322 -160 420 -160"/>
+  <path class="g-edge" style="--i:9" d="M240 -105 Q303 -78 340 -20"/>
+  <path class="g-edge g-edge--q" style="--i:10;--q:2" d="M-470 60 Q-482 129 -530 180"/>
+  <path class="g-edge" style="--i:11" d="M-470 60 Q-520 20 -540 -40"/>
+  <path class="g-edge g-edge--q" style="--i:12;--q:3" d="M470 70 Q514 128 520 200"/>
+  <path class="g-edge" style="--i:13" d="M470 70 Q490 10 540 -30"/>
+  <path class="g-edge g-edge--q" style="--i:14;--q:4" d="M-300 330 Q-360 402 -450 430"/>
+  <path class="g-edge" style="--i:15" d="M-300 330 Q-217 370 -170 450"/>
+  <path class="g-edge g-edge--q" style="--i:16;--q:5" d="M310 350 Q400 378 460 450"/>
+  <path class="g-edge" style="--i:17" d="M310 350 Q268 428 190 470"/>
+  <circle class="g-node" cx="-250" cy="-95" r="3.2"/>
+  <circle class="g-node" cx="240" cy="-105" r="3.2"/>
+  <circle class="g-node" cx="-470" cy="60" r="3.2"/>
+  <circle class="g-node" cx="470" cy="70" r="3.2"/>
+  <circle class="g-node" cx="-300" cy="330" r="3.2"/>
+  <circle class="g-node" cx="310" cy="350" r="3.2"/>
+  <g class="g-q" style="--q:0"><circle class="g-node g-node--q" cx="-420" cy="-150" r="4"/><text class="g-label" x="-432" y="-146" text-anchor="end"><tspan x="-432" dy="0">Что меня держит?</tspan></text></g>
+  <circle class="g-node g-node--sm" cx="-330" cy="-10" r="2.4"/>
+  <g class="g-q" style="--q:1"><circle class="g-node g-node--q" cx="420" cy="-160" r="4"/><text class="g-label" x="432" y="-156" text-anchor="start"><tspan x="432" dy="0">Куда это ведёт?</tspan></text></g>
+  <circle class="g-node g-node--sm" cx="340" cy="-20" r="2.4"/>
+  <g class="g-q" style="--q:2"><circle class="g-node g-node--q" cx="-530" cy="180" r="4"/><text class="g-label" x="-542" y="184" text-anchor="end"><tspan x="-542" dy="0">Чего я боюсь?</tspan></text></g>
+  <circle class="g-node g-node--sm" cx="-540" cy="-40" r="2.4"/>
+  <g class="g-q" style="--q:3"><circle class="g-node g-node--q" cx="520" cy="200" r="4"/><text class="g-label" x="532" y="196" text-anchor="start"><tspan x="532" dy="0">Чего я хочу</tspan><tspan x="532" dy="16">на самом деле?</tspan></text></g>
+  <circle class="g-node g-node--sm" cx="540" cy="-30" r="2.4"/>
+  <g class="g-q" style="--q:4"><circle class="g-node g-node--q" cx="-450" cy="430" r="4"/><text class="g-label" x="-462" y="426" text-anchor="end"><tspan x="-462" dy="0">Что я теряю,</tspan><tspan x="-462" dy="16">ожидая?</tspan></text></g>
+  <circle class="g-node g-node--sm" cx="-170" cy="450" r="2.4"/>
+  <g class="g-q" style="--q:5"><circle class="g-node g-node--q" cx="460" cy="450" r="4"/><text class="g-label" x="472" y="446" text-anchor="start"><tspan x="472" dy="0">О чём страшнее</tspan><tspan x="472" dy="16">спросить?</tspan></text></g>
+  <circle class="g-node g-node--sm" cx="190" cy="470" r="2.4"/>
+</svg>

@@ -134,15 +134,32 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
   to   { transform: translate3d(6%, -4%, 0) scale(1.08); }
 }
 
-.orbits {
-  position: absolute; left: 50%; top: 50%; width: min(1000px, 140%); height: auto;
-  transform: translate(-50%, -50%); pointer-events: none;
-  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent); mask-image: radial-gradient(closest-side, #000 55%, transparent);
-  fill: none; stroke: var(--ink); stroke-opacity: .07; stroke-width: 1;
+/* Граф вопросов: центр — значок над заголовком (человек), ветви — варианты, у части — вопросы */
+.hero__in > .graph {
+  position: absolute; left: 50%; top: 26px;               /* 26px — центр значка .orb--lg */
+  width: 1000px; height: 683px; margin: -217px 0 0 -500px;   /* viewBox 1200×820 в масштабе 0,83 — целиком внутри рамки */
+  z-index: -1; pointer-events: none; overflow: visible;
 }
-.orbits circle { fill: var(--ink); fill-opacity: .28; stroke: none; }
-.orbits__spin { transform-origin: 0 0; animation: spin 240s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
+.g-edge { fill: none; stroke: var(--ink); stroke-opacity: .11; stroke-width: 1;
+  stroke-dasharray: 700; stroke-dashoffset: 700;
+  animation: g-draw 2.4s cubic-bezier(.4, 0, .2, 1) forwards; animation-delay: calc(.25s + var(--i) * .09s); }
+.g-node { fill: var(--surface); stroke: var(--ink); stroke-opacity: .3; stroke-width: 1;
+  opacity: 0; animation: g-fade 1s ease forwards; animation-delay: 1.4s; }
+.g-node--sm { stroke-opacity: .22; }
+.g-label { font: 400 15.6px/1 var(--sans);   /* 15,6 × 0,83 ≈ 13px на экране */ fill: var(--ink-3); letter-spacing: .01em;
+  opacity: 0; animation: g-fade 1.2s ease forwards; animation-delay: 2s; }
+@keyframes g-draw { to { stroke-dashoffset: 0; } }
+@keyframes g-fade { to { opacity: 1; } }
+/* по очереди подсвечивается одна ветвь-вопрос: 6 вопросов × 4 с */
+.g-edge--q { animation: g-draw 2.4s cubic-bezier(.4, 0, .2, 1) forwards, g-edge-focus 24s ease-in-out infinite;
+  animation-delay: calc(.25s + var(--i) * .09s), calc(3s + var(--q) * 4s); }
+.g-q .g-node--q { animation: g-fade 1s ease forwards, g-node-focus 24s ease-in-out infinite;
+  animation-delay: 1.4s, calc(3s + var(--q) * 4s); }
+.g-q .g-label { animation: g-fade 1.2s ease forwards, g-label-focus 24s ease-in-out infinite;
+  animation-delay: 2s, calc(3s + var(--q) * 4s); }
+@keyframes g-edge-focus { 0%, 20%, 100% { stroke: var(--ink); stroke-opacity: .11; } 6%, 14% { stroke: var(--accent); stroke-opacity: .55; } }
+@keyframes g-node-focus { 0%, 20%, 100% { fill: var(--surface); stroke: var(--ink); stroke-opacity: .3; } 6%, 14% { fill: var(--accent); stroke: var(--accent); stroke-opacity: 1; } }
+@keyframes g-label-focus { 0%, 20%, 100% { fill: var(--ink-3); } 6%, 14% { fill: var(--ink); } }
 
 /* Три шага */
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 760px; margin: 0 auto; padding: 0 24px; }
@@ -256,15 +273,21 @@ a.sign:hover b { text-decoration: underline; text-underline-offset: 3px; }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
+  .g-edge { stroke-dashoffset: 0; }
+  .g-node, .g-label { opacity: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+@media (max-width: 1060px) { .g-label { display: none; } }
 
 @media (max-width: 720px) {
   .frame { margin: 0; border-radius: 0; }
   :root { --gap: 72px; --pad-x: 16px; --head: 60px; }
   .top { padding: 18px 16px; }
   .hero { min-height: 100svh; }
+  .hero__in > .graph { transform: scale(.62); transform-origin: 500px 217px; }
+  .g-label { display: none; }
   .steps { grid-template-columns: 1fr; padding: 0 16px; gap: 28px; }
   .panel { padding: 28px 20px 24px; }
   .intro { grid-template-columns: 1fr; gap: 48px; justify-items: center; text-align: center; }
