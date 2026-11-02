@@ -1,0 +1,39 @@
+{{- /* Точка напряжения: спутанные линии сходятся в одну точку и выходят из неё ровным потоком. */ -}}
+<figure class="tension" aria-hidden="true">
+  <svg viewBox="0 0 640 280" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <linearGradient id="tfade" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="currentColor" stop-opacity="0"/>
+        <stop offset=".18" stop-color="currentColor" stop-opacity="1"/>
+        <stop offset=".9" stop-color="currentColor" stop-opacity="1"/>
+        <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g class="tension__lines" stroke="url(#tfade)">
+      <path d="M-10 18 C80 -23 265 138 380 140 S560 106 640 106" style="--i:0"/>
+      <path d="M-10 46 C63 -5 274 107 380 140 S560 114 640 114" style="--i:1"/>
+      <path d="M-10 70 C83 84 243 136 380 140 S560 120 640 120" style="--i:2"/>
+      <path d="M-10 98 C73 42 245 136 380 140 S560 128 640 128" style="--i:3"/>
+      <path d="M-10 122 C86 70 255 117 380 140 S560 135 640 135" style="--i:4"/>
+      <path d="M-10 160 C95 154 243 154 380 140 S560 146 640 146" style="--i:5"/>
+      <path d="M-10 188 C67 156 280 162 380 140 S560 153 640 153" style="--i:6"/>
+      <path d="M-10 214 C97 161 276 163 380 140 S560 161 640 161" style="--i:7"/>
+      <path d="M-10 246 C85 192 254 133 380 140 S560 170 640 170" style="--i:8"/>
+      <path d="M-10 268 C95 317 248 152 380 140 S560 176 640 176" style="--i:9"/>
+    </g>
+    <g class="tension__flow" stroke="url(#tfade)">
+      <path d="M-10 18 C80 -23 265 138 380 140 S560 106 640 106" style="--i:0"/>
+      <path d="M-10 46 C63 -5 274 107 380 140 S560 114 640 114" style="--i:1"/>
+      <path d="M-10 70 C83 84 243 136 380 140 S560 120 640 120" style="--i:2"/>
+      <path d="M-10 98 C73 42 245 136 380 140 S560 128 640 128" style="--i:3"/>
+      <path d="M-10 122 C86 70 255 117 380 140 S560 135 640 135" style="--i:4"/>
+      <path d="M-10 160 C95 154 243 154 380 140 S560 146 640 146" style="--i:5"/>
+      <path d="M-10 188 C67 156 280 162 380 140 S560 153 640 153" style="--i:6"/>
+      <path d="M-10 214 C97 161 276 163 380 140 S560 161 640 161" style="--i:7"/>
+      <path d="M-10 246 C85 192 254 133 380 140 S560 170 640 170" style="--i:8"/>
+      <path d="M-10 268 C95 317 248 152 380 140 S560 176 640 176" style="--i:9"/>
+    </g>
+    <circle class="tension__halo" cx="380" cy="140" r="16"/>
+    <circle class="tension__point" cx="380" cy="140" r="3.5"/>
+  </svg>
+</figure>

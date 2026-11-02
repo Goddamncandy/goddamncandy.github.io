@@ -1,11 +1,15 @@
-<article class="sec">
-  <div class="wrap narrow">
-    <header class="pagehead">
-      <span class="kicker"><a href="{{ .BaseURL }}/blog/">Блог</a>{{ if .FM.published_at }} · <time datetime="{{ .FM.published_at }}">{{ if .FM.date_label }}{{ .FM.date_label }}{{ else }}{{ .FM.published_at }}{{ end }}</time>{{ end }}</span>
-      <h1>{{ .Page.Title }}</h1>
-      {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
-    </header>
+<section class="sec">
+  <header class="pagehead">
+    <span class="pill"><a href="{{ .BaseURL }}/blog/">Блог</a>{{ if .FM.published_at }} · <time datetime="{{ .FM.published_at }}">{{ if .FM.date_label }}{{ .FM.date_label }}{{ else }}{{ .FM.published_at }}{{ end }}</time>{{ end }}</span>
+    <h1 class="h1--article">{{ .Page.Title }}</h1>
+    {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
+  </header>
+  <article class="panel">
     <div class="prose">{{ .Body }}</div>
-  </div>
-</article>
+    <div class="sign">
+      <span class="sign__av">В</span>
+      <span><b>{{ .Settings.name }}</b><small>аналитические расклады на таро</small></span>
+    </div>
+  </article>
+</section>
 {{ template "cta.html" . }}

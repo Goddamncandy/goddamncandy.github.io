@@ -1,11 +1,12 @@
-<article class="sec">
-  <div class="wrap narrow">
-    <header class="pagehead">
-      {{- if .FM.kicker }}<span class="kicker">{{ .FM.kicker }}</span>{{ end }}
-      <h1>{{ .Page.Title }}</h1>
-      {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
-    </header>
+<section class="sec">
+  <header class="pagehead">
+    <span class="orb">{{ template "icon-cards" }}</span>
+    {{- if .FM.kicker }}<span class="pill"><i class="dot"></i>{{ .FM.kicker }}</span>{{ end }}
+    <h1>{{ if .FM.h1_a }}{{ .FM.h1_a }} <em>{{ .FM.h1_em }}</em>{{ else }}{{ .Page.Title }}{{ end }}</h1>
+    {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
+  </header>
+  <article class="panel">
     <div class="prose">{{ .Body }}</div>
-  </div>
-</article>
+  </article>
+</section>
 {{ template "cta.html" . }}

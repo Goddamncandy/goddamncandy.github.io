@@ -1,0 +1,17 @@
+{{- /* Фон первого экрана: тонкие орбиты, по которым медленно ходят точки, — система, где всё связано. */ -}}
+<svg class="orbits" viewBox="-400 -400 800 800" aria-hidden="true">
+  <g class="orbits__spin">
+    <g transform="rotate(-18)">
+      <ellipse id="o1" rx="360" ry="128"/>
+      <circle r="2.6"><animateMotion dur="90s" repeatCount="indefinite" path="M360 0 A360 128 0 1 1 -360 0 A360 128 0 1 1 360 0"/></circle>
+    </g>
+    <g transform="rotate(32)">
+      <ellipse rx="300" ry="96"/>
+      <circle r="2.2"><animateMotion dur="70s" begin="-25s" repeatCount="indefinite" path="M-300 0 A300 96 0 1 0 300 0 A300 96 0 1 0 -300 0"/></circle>
+    </g>
+    <g transform="rotate(78)">
+      <ellipse rx="250" ry="70"/>
+      <circle r="2"><animateMotion dur="55s" begin="-10s" repeatCount="indefinite" path="M250 0 A250 70 0 1 1 -250 0 A250 70 0 1 1 250 0"/></circle>
+    </g>
+  </g>
+</svg>

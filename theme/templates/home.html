@@ -1,38 +1,78 @@
-{{- /* Главная: мысль из поста «С чего начинается расклад» → как проходит → формат и цена → блог.
-       Тексты — в content/home.md: свойства и тело страницы. */ -}}
+{{- /* Главная: первый экран → три шага → подход (тело content/home.md) → точка напряжения → блог → запись.
+       Тексты первого экрана и блока «точка напряжения» — свойства в content/home.md. */ -}}
 <section class="hero">
-  <div class="wrap">
-    <span class="kicker">{{ .FM.kicker }}</span>
-    <h1>{{ .Page.Title }}</h1>
+  <div class="fog" aria-hidden="true"><span></span><span></span><span></span></div>
+  {{ template "orbits.html" . }}
+  <div class="hero__in">
+    <span class="orb orb--lg">{{ template "icon-mark" }}</span>
+    <span class="pill"><i class="dot"></i>{{ .FM.kicker }}</span>
+    <h1>{{ .FM.h1_a }} <em>{{ .FM.h1_em }}</em></h1>
     <p class="lead">{{ .FM.lead }}</p>
     <div class="actions">
-      <a class="btn" href="https://t.me/{{ .Settings.tg }}">Записаться — {{ .Settings.price }}</a>
-      <a class="btn btn--ghost" href="{{ .BaseURL }}/rasklad/">Как проходит расклад</a>
+      <a class="btn" href="https://t.me/{{ .Settings.tg }}">Записаться · {{ .Settings.price }}</a>
+      <a class="btn btn--ghost" href="{{ .BaseURL }}/rasklad/">Как проходит</a>
     </div>
+  </div>
+</section>
+
+<section class="steps reveal">
+  <div class="step">
+    <span class="orb">{{ template "icon-question" }}</span>
+    <h3>Вопрос</h3>
+    <p>Найти, о чём вы спрашиваете на самом деле</p>
+  </div>
+  <div class="step">
+    <span class="orb">{{ template "icon-cards" }}</span>
+    <h3>Символы</h3>
+    <p>Карты как образы, а не предсказания</p>
+  </div>
+  <div class="step">
+    <span class="orb">{{ template "icon-point" }}</span>
+    <h3>Точка напряжения</h3>
+    <p>Где ситуация застряла и что её держит</p>
   </div>
 </section>
 
 <section class="sec">
-  <div class="wrap"><div class="prose">
+  <article class="panel reveal">
+    <span class="orb orb--corner">{{ template "icon-mark" }}</span>
+    <span class="tag">Подход</span>
+    <div class="prose">
 {{ .Body }}
-  </div></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Формат</dt><dd>очно в Ижевске или онлайн</dd></div>
+      <div><dt>Длительность</dt><dd>около часа</dd></div>
+      <div><dt>Стоимость</dt><dd>{{ .Settings.price }}</dd></div>
+    </dl>
+    <div class="sign">
+      <span class="sign__av">В</span>
+      <span><b>{{ .Settings.name }}</b><small>аналитические расклады на таро</small></span>
+    </div>
+  </article>
+</section>
+
+<section class="sec sec--center reveal">
+  <span class="tag">{{ .FM.tension_tag }}</span>
+  <h2 class="h2">{{ .FM.tension_a }} <em>{{ .FM.tension_em }}</em></h2>
+  {{ template "tension.html" . }}
+  <p class="sub">{{ .FM.tension_text }}</p>
 </section>
 
 {{- with .Collections.posts_recent.Items }}
-<section class="sec sec--alt">
-  <div class="wrap">
-    <h2 class="h2">Из блога</h2>
-    <div class="cards">
-      {{- range . }}
-      <a class="card" href="{{ printf "%s%s" $.BaseURL .PublicPath }}">
-        {{- if .FM.date_label }}<span class="card__date">{{ .FM.date_label }}</span>{{ end }}
-        <span class="card__title">{{ .Title }}</span>
-        <span class="card__text">{{ .Description }}</span>
-      </a>
-      {{- end }}
-    </div>
-    <p class="more"><a href="{{ $.BaseURL }}/blog/">Все записи</a></p>
+<section class="sec sec--center reveal">
+  <span class="tag">Блог</span>
+  <h2 class="h2">Размышления <em>о символах</em></h2>
+  <div class="cards">
+    {{- range . }}
+    <a class="card" href="{{ printf "%s%s" $.BaseURL .PublicPath }}">
+      {{- if .FM.date_label }}<span class="card__date">{{ .FM.date_label }}</span>{{ end }}
+      <span class="card__title">{{ .Title }}</span>
+      <span class="card__text">{{ .Description }}</span>
+    </a>
+    {{- end }}
   </div>
+  <p class="more"><a href="{{ $.BaseURL }}/blog/">Все записи →</a></p>
 </section>
 {{- end }}
 
