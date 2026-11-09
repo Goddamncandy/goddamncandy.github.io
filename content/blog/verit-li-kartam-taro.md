@@ -3,6 +3,10 @@ type: article
 slug: verit-li-kartam-taro
 title: "Стоит ли верить картам таро: взгляд таролога"
 description: "Верить ли картам таро? Как гаданию — нет. Как зеркалу, в котором видно вашу ситуацию, — стоит. Почему таро «сбывается» и когда расклад не сбывается."
+og_image: "/assets/og/verit-li-kartam-taro.jpg"
+og_title: "Стоит ли верить"
+og_em: "картам таро"
+og_sub: "Не как гаданию, а как зеркалу"
 cluster: verit-li-taro
 keywords:
 - верить ли картам таро

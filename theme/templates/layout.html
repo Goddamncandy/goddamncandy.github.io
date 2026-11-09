@@ -27,7 +27,10 @@
   {{- range .Meta.OpenGraph }}
   <meta property="{{ .Key }}" content="{{ .Value }}" />
   {{- end }}
-  <title>{{ .Title }}</title>
+  {{- if .Meta.JSONLD }}
+  <script type="application/ld+json">{{ .Meta.JSONLD }}</script>
+  {{- end }}
+  <title>{{ .Meta.Title }}</title>
 </head>
 <body>
 <div class="frame">
@@ -46,7 +49,7 @@
 
   <footer class="foot">
     <span>{{ .Settings.name }}</span>
-    <span><a href="https://t.me/{{ .Settings.tg }}">Записаться</a> · <a href="https://t.me/{{ .Settings.channel }}" target="_blank" rel="noopener">Канал</a></span>
+    <span><a href="{{ .BaseURL }}/astro-taro/">Карта по дате рождения</a> · <a href="https://t.me/{{ .Settings.tg }}">Записаться</a> · <a href="https://t.me/{{ .Settings.channel }}" target="_blank" rel="noopener">Канал</a></span>
   </footer>
 </div>
 <script src="{{ .AssetsBase }}/site.js" defer></script>

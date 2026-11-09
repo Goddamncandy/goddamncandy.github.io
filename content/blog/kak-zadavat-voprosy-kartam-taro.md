@@ -3,6 +3,10 @@ type: article
 slug: kak-zadavat-voprosy-kartam-taro
 title: "Как задавать вопросы картам таро: правила и примеры"
 description: "Как задавать вопросы картам таро, чтобы расклад помог: спрашивать о себе, а не о другом, о направлении, а не о судьбе. Правила и примеры вопросов."
+og_image: "/assets/og/kak-zadavat-voprosy-kartam-taro.jpg"
+og_title: "Как задавать вопросы"
+og_em: "картам таро"
+og_sub: "Спрашивать о себе, а не о другом"
 cluster: kak-zadavat-voprosy
 keywords:
 - как задавать вопросы картам таро

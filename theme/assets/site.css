@@ -57,12 +57,12 @@ h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -.025em; line-height: 
 h1 { font-size: clamp(34px, 5.2vw, 54px); max-width: 15em; margin-inline: auto; }
 h1 em, .h2 em {
   font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 1.06em; letter-spacing: -.01em;   /* строчные у засечкового ниже — подтянуто до высоты Mulish */
+  font-size: 1.3em; line-height: 1; letter-spacing: -.01em;   /* строчные Cormorant ниже: 1.3em — вровень со строчными Mulish (как на картинках og) */
   color: var(--ink-2);   /* курсив бледнее основного текста, но читается: контраст ≈ 6:1 */
 }
 .h1--article { font-size: clamp(28px, 4vw, 40px); max-width: 20em; }
 .h2 { font-size: clamp(26px, 3.4vw, 36px); }
-h3 { font-size: 16px; letter-spacing: -.01em; }
+h3, .step__h { font-size: 16px; letter-spacing: -.01em; }
 .lead { font-size: 16px; color: var(--ink-2); max-width: 30em; margin: 18px auto 0; }
 .sub { color: var(--ink-2); max-width: 34em; margin: 18px auto 0; font-size: 15px; }
 

@@ -3,6 +3,10 @@ type: article
 slug: voprosy-taro-na-otnosheniya
 title: "Вопросы таро на отношения: как спросить честно"
 description: "Вопросы таро на отношения, которые помогают, а не пугают: почему «что он чувствует» не работает и какие вопросы задать картам вместо него. С примерами."
+og_image: "/assets/og/voprosy-taro-na-otnosheniya.jpg"
+og_title: "Вопросы таро"
+og_em: "на отношения"
+og_sub: "Почему «что он чувствует» не работает"
 cluster: voprosy-otnosheniya
 keywords:
 - вопросы таро на отношения

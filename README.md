@@ -27,6 +27,8 @@ scripts/build.sh                # собрать dist/ с адресами из 
 | цена, ник для записи, канал, закрытость от поиска | `settings` в `config.yaml` и то же в `config.dev.yaml` |
 | вёрстка | `theme/templates/`, блок записи — `partials/cta.html`; три шага на главной — прямо в `home.html` |
 | рисунки | `partials/orbits.html` (орбиты за заголовком), `partials/tension.html` (точка напряжения), значки — `partials/icons.html` |
+| картинки для соцсетей (og:image) | `scripts/og/make.py` → `theme/assets/og/<slug>.jpg`, сам из `scripts/preview.sh`: новой странице выводит тексты из title/description и пишет во frontmatter (`og_title`, `og_em` — курсив, `og_sub`, `og_image`), рисует только изменившееся. Правила — `../vera-life/projects/opengraph.md`. Нужен Chrome; картинки коммитятся |
+| поиск и модели | `seo_title` во frontmatter — короткий `<title>`; разметка schema.org — `seo.jsonld: auto` в конфиге (WebSite, WebPage, Article у статей); `llms.txt` — блок `llms` в конфиге. Оба блока — в `config.yaml` и `config.dev.yaml` |
 | цвета и шрифты | `theme/assets/site.css`: холодный серый, белая рамка, тёмные круглые значки; акцент — ультрамарин только в точках; только светлая тема. Анимации выключаются при «уменьшить движение» |
 
 Ссылки между страницами — вики-ссылкой `[[адрес|текст]]`.

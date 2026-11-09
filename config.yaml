@@ -5,7 +5,8 @@ site:
   base_url: "https://veralozhkina.ru"
   title: "Вера Ложкина — аналитические расклады на таро"
   description: "Расклады на таро как способ посмотреть на ситуацию иначе: через символы, в духе аналитической психологии Юнга. Ижевск и онлайн."
-  default_og_image: ""
+  default_og_image: "/assets/og/home.jpg"
+  language: "ru"
   media_base_url: "https://veralozhkina.ru/media"
   host: 127.0.0.1
 
@@ -21,6 +22,21 @@ content:
 
 markdown:
   html_policy: "safe"
+
+# Разметка schema.org: WebSite и WebPage на каждой странице, Article у статей блога.
+seo:
+  jsonld: "auto"
+  author_name: "Вера Ложкина"
+
+# llms.txt — список страниц сайта для языковых моделей (llmstxt.org).
+llms:
+  enabled: true
+  intro: "Вера Ложкина делает аналитические расклады на таро в духе Юнга: не гадание и не предсказание, а взгляд на ситуацию через символы. Расклад начинается с вопроса. Ижевск и онлайн."
+  sections:
+    - { type: "home", title: "Главная" }
+    - { type: "page", title: "Расклад и метод" }
+    - { type: "tool", title: "Инструмент" }
+    - { type: "article", title: "Блог" }
 
 og_type_by_type:
   home: "website"

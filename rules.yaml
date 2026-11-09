@@ -6,6 +6,11 @@ fields:
     - description
     - draft
     - noindex
+    - seo_title       # <title> и og:title, если короче или точнее title
+    - og_image        # картинка для соцсетей: /assets/og/<slug>.jpg, делает scripts/og/make.py
+    - og_title        # текст картинки: обычная часть заголовка
+    - og_em           # текст картинки: курсив
+    - og_sub          # текст картинки: подзаголовок
     - lead            # вводный абзац под заголовком
     - kicker          # строка над заголовком
     - published_at    # дата статьи: "2026-11-02" — по ней лента сортируется
@@ -78,11 +83,11 @@ collections:
     limit: 3
 
 sitemap:
-  include_types: ["home", "page", "blog", "article"]
+  include_types: ["home", "page", "blog", "article", "tool"]
   exclude_drafts: true
 
 search:
-  include_types: ["page", "article"]
+  include_types: ["page", "article", "tool"]
   exclude_drafts: true
   fields_boost: { title: 3, description: 2, body: 1 }
   preview: { from: "description", max_len: 180 }

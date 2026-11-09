@@ -18,17 +18,17 @@
 <section class="steps reveal" hidden>   {{- /* три шага скрыты 02.11 по слову Антона; не удалять */}}
   <div class="step">
     <span class="orb">{{ template "icon-question" }}</span>
-    <h3>Вопрос</h3>
+    <h2 class="step__h">Вопрос</h2>
     <p>Найти, о чём вы спрашиваете на самом деле</p>
   </div>
   <div class="step">
     <span class="orb">{{ template "icon-cards" }}</span>
-    <h3>Символы</h3>
+    <h2 class="step__h">Символы</h2>
     <p>Карты как образы, а не предсказания</p>
   </div>
   <div class="step">
     <span class="orb">{{ template "icon-point" }}</span>
-    <h3>Точка напряжения</h3>
+    <h2 class="step__h">Точка напряжения</h2>
     <p>Где ситуация застряла и что её держит</p>
   </div>
 </section>
@@ -61,6 +61,15 @@
   <h2 class="h2">{{ .FM.tension_a }} <em>{{ .FM.tension_em }}</em></h2>
   {{ template "tension.html" . }}
   <p class="sub">{{ .FM.tension_text }}</p>
+</section>
+
+<section class="sec sec--center reveal">
+  <span class="tag">Попробовать на себе</span>
+  <h2 class="h2">Ваша карта <em>по дате рождения</em></h2>
+  <p class="sub">Три карты по дню рождения: в чём ваша сила и где тень. Портрет, а&nbsp;не прогноз.</p>
+  <div class="actions">
+    <a class="btn btn--ghost" href="{{ .BaseURL }}/astro-taro/">Узнать свою карту</a>
+  </div>
 </section>
 
 {{- with .Collections.posts_recent.Items }}
