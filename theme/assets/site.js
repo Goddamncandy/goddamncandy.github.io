@@ -23,3 +23,14 @@
     a.rel = 'noopener';
   });
 })();
+
+// Цели Метрики: клик по записи в личку и по каналу. Без счётчика (metrika_id пуст) — ничего.
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="t.me/"]');
+    if (!a || !window.ym || !window.METRIKA_ID) return;
+    var goal = a.href.indexOf('t.me/everveyratarot') !== -1 ? 'channel_click'
+      : a.href.indexOf('t.me/everveyra') !== -1 ? 'booking_click' : '';
+    if (goal) window.ym(window.METRIKA_ID, 'reachGoal', goal);
+  });
+})();

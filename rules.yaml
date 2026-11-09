@@ -42,6 +42,10 @@ types:
     template: "blog.html"
     permalink: "/blog/"
     include_in: { sitemap: true, search: false }
+  tool:            # страница-инструмент со своим скриптом: астро-таро
+    template: "tool.html"
+    permalink: "/{{ slug }}/"
+    include_in: { sitemap: true, search: true }
   article:         # статья блога: файл в content/blog/
     template: "article.html"
     permalink: "/blog/{{ slug }}/"
@@ -50,7 +54,7 @@ types:
 links:
   - name: "wiki"
     kind: "wikilinks"
-    from_types: ["home", "page", "blog", "article"]
+    from_types: ["home", "page", "blog", "article", "tool"]
     resolve_by: "wikimap"
 
 collections:

@@ -9,6 +9,9 @@
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="{{ .AssetsBase }}/site.css" />
   <link rel="icon" href="{{ .AssetsBase }}/favicon.svg" />
+  {{- if .Settings.yandex_verification }}
+  <meta name="yandex-verification" content="{{ .Settings.yandex_verification }}" />
+  {{- end }}
   {{- if .Page.Description }}
   <meta name="description" content="{{ .Page.Description }}" />
   {{- end }}
@@ -47,5 +50,45 @@
   </footer>
 </div>
 <script src="{{ .AssetsBase }}/site.js" defer></script>
+  {{- if .Settings.metrika_id }}
+  <script>
+    // Очередь заводится сразу, а сам тег грузится после загрузки страницы.
+    // tag.js — 91 КБ и заметное время разбора в главном потоке; визит при этом
+    // не теряется: init кладётся в очередь ym.a и отрабатывает, когда скрипт
+    // приедет. Порядок именно такой — сперва очередь, потом отложенная загрузка.
+    window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = 1 * new Date();
+    window.METRIKA_ID = Number({{ .Settings.metrika_id }});
+    // Number() на случай, если шаблонизатор отдаст номер счётчика строкой.
+    ym(Number({{ .Settings.metrika_id }}), "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+    (function () {
+      // Адрес собирается склейкой, а не подстановкой внутрь строкового литерала:
+      // в контексте <script> html/template отдаёт значение уже как строку в кавычках.
+      // Параметр id обязателен в актуальном сниппете — по нему CDN отдаёт сборку
+      // под конкретный счётчик, и он же участвует в проверке на повторную вставку.
+      var src = "https://mc.yandex.ru/metrika/tag.js?id=" + {{ .Settings.metrika_id }};
+      function load() {
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === src) return;
+        }
+        var k = document.createElement("script");
+        k.async = 1; k.src = src;
+        document.head.appendChild(k);
+      }
+      function schedule() {
+        if (window.requestIdleCallback) requestIdleCallback(load, { timeout: 3000 });
+        else window.setTimeout(load, 1200);
+      }
+      if (document.readyState === "complete") schedule();
+      else window.addEventListener("load", schedule);
+    })();
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/{{ .Settings.metrika_id }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  {{- end }}
 </body>
 </html>

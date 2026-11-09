@@ -1,0 +1,39 @@
+<section class="sec">
+  <header class="pagehead">
+    <span class="orb">{{ template "icon-cards" }}</span>
+    {{- if .FM.kicker }}<span class="pill"><i class="dot"></i>{{ .FM.kicker }}</span>{{ end }}
+    <h1>{{ if .FM.h1_a }}{{ .FM.h1_a }} <em>{{ .FM.h1_em }}</em>{{ else }}{{ .Page.Title }}{{ end }}</h1>
+    {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
+  </header>
+  <article class="panel astro">
+    <form class="astro__form" id="astro-form">
+      <span class="astro__label" id="astro-date-label">Дата рождения</span>
+      <div class="wheel-arrows" aria-hidden="true">
+        <button type="button" class="wheel-arrow wheel-arrow--up" data-kind="d" data-step="-1" tabindex="-1"></button>
+        <button type="button" class="wheel-arrow wheel-arrow--up" data-kind="m" data-step="-1" tabindex="-1"></button>
+        <button type="button" class="wheel-arrow wheel-arrow--up" data-kind="y" data-step="-1" tabindex="-1"></button>
+      </div>
+      <div class="wheel" id="astro-wheel" role="group" aria-labelledby="astro-date-label">
+        <div class="wheel__band" aria-hidden="true"></div>
+        <div class="wheel__col" data-kind="d" tabindex="0" aria-label="День"></div>
+        <div class="wheel__col" data-kind="m" tabindex="0" aria-label="Месяц"></div>
+        <div class="wheel__col" data-kind="y" tabindex="0" aria-label="Год"></div>
+      </div>
+      <div class="wheel-arrows" aria-hidden="true">
+        <button type="button" class="wheel-arrow wheel-arrow--down" data-kind="d" data-step="1" tabindex="-1"></button>
+        <button type="button" class="wheel-arrow wheel-arrow--down" data-kind="m" data-step="1" tabindex="-1"></button>
+        <button type="button" class="wheel-arrow wheel-arrow--down" data-kind="y" data-step="1" tabindex="-1"></button>
+      </div>
+      <input type="hidden" id="astro-date" />
+      <button class="btn astro__go" type="submit">Показать карту</button>
+    </form>
+    <noscript><p class="astro__note">Расчёт работает в браузере: включите JavaScript.</p></noscript>
+    <div class="astro__result" id="astro-result" aria-live="polite" hidden></div>
+  </article>
+  <article class="panel astro__about">
+    <div class="prose">{{ .Body }}</div>
+  </article>
+</section>
+<script src="{{ .AssetsBase }}/astro-data.js" defer></script>
+<script src="{{ .AssetsBase }}/astro.js" defer data-cards="{{ .AssetsBase }}/cards/" data-tg="https://t.me/{{ .Settings.tg }}"></script>
+{{ template "cta.html" . }}

@@ -100,9 +100,12 @@ h3 { font-size: 16px; letter-spacing: -.01em; }
   background: var(--orb); color: #fff; text-decoration: none;
   font: 500 14px/1 var(--sans);
   box-shadow: var(--shadow-orb);
+  border: 0; cursor: pointer;   /* у <button> своя рамка браузера */
   transition: transform .4s ease, box-shadow .4s ease;
 }
 .btn:hover { transform: translateY(-1px); }
+.btn:focus { outline: none; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }   /* рамка — только с клавиатуры */
 .btn--ghost { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-soft); }
 
 /* Первый экран: туман и орбиты */
@@ -296,6 +299,67 @@ a.sign:hover b { text-decoration: underline; text-underline-offset: 3px; }
   .orb--corner { right: 12px; }
   .foot { padding: 20px 16px; }
   .btn { flex: 1 1 100%; }
+}
+
+/* Астро-таро: форма даты и результат */
+.astro__label { display: block; font-size: 12.5px; color: var(--ink-3); margin-bottom: 8px; }
+/* Барабаны даты, как в iPhone: строка 40px, видно пять, выбранная — по центру под полосой */
+.wheel {
+  position: relative; display: grid; grid-template-columns: 1fr 1.7fr 1.2fr; height: 200px;
+  max-width: 380px; margin: 0 auto; background: var(--frame); border-radius: 16px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 32%, #000 68%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 32%, #000 68%, transparent 100%);
+  user-select: none; -webkit-user-select: none;
+}
+.astro__form > .astro__label { text-align: center; }
+.wheel__band { position: absolute; left: 8px; right: 8px; top: 80px; height: 40px; border-radius: 10px; background: rgba(29, 32, 37, .07); pointer-events: none; }
+.wheel__col {
+  position: relative; height: 200px; overflow-y: scroll; scroll-snap-type: y mandatory; overscroll-behavior: contain;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch; outline: none;
+}
+.wheel__col::-webkit-scrollbar { display: none; }
+.wheel__col:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); border-radius: 12px; }
+.wheel__pad { height: 80px; }
+.wheel__item {
+  height: 40px; line-height: 40px; text-align: center; scroll-snap-align: center; cursor: pointer;
+  font-size: 19px; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap;
+  transform-origin: center; will-change: transform, opacity;
+}
+.wheel__item--off { color: var(--ink-3); }
+/* Стрелки над и под барабанами — только там, где есть мышь; на телефоне крутят пальцем */
+.wheel-arrows { display: none; grid-template-columns: 1fr 1.7fr 1.2fr; max-width: 380px; margin: 0 auto; }
+.wheel-arrow { height: 22px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; padding: 0; }
+.wheel-arrow::before { content: ""; width: 0; height: 0; border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; transition: border-color .2s ease; }
+.wheel-arrow--up::before { border-bottom: 5px solid var(--ink-3); }
+.wheel-arrow--down::before { border-top: 5px solid var(--ink-3); }
+.wheel-arrow--up:hover::before { border-bottom-color: var(--ink-2); }
+.wheel-arrow--down:hover::before { border-top-color: var(--ink-2); }
+@media (hover: hover) and (pointer: fine) { .wheel-arrows { display: grid; } }
+.astro__go { display: flex; width: 100%; max-width: 380px; margin: 18px auto 0; justify-content: center; }
+.astro__result { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+.astro__main { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; align-items: start; }
+.astro__main p { font-size: 15.5px; color: #3c424a; margin-top: 10px; }
+.astro__title { font-size: 26px; letter-spacing: -.02em; margin-top: 12px; }
+.astro__shadow { color: var(--ink-2); }
+.astro__card { width: 100%; height: auto; border-radius: 10px; box-shadow: var(--shadow-soft); display: block; }
+.astro__card--sm { width: 64px; }
+.astro__noimg { aspect-ratio: 360 / 604; display: grid; place-items: center; text-align: center; padding: 8px; background: var(--frame); border: 1px solid var(--line); box-shadow: none; font-size: 12px; color: var(--ink-2); }
+.astro__three { display: grid; gap: 30px; }
+.astro__h3 { font-size: 18px; letter-spacing: -.015em; margin-bottom: 14px; }
+.astro__hint { font-size: 13.5px; color: var(--ink-3); margin: -8px 0 4px; }
+.astro__more { display: grid; gap: 16px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.astro__mini { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; align-items: start; }
+.astro__mini .astro__label { margin-bottom: 2px; }
+.astro__mini b { font-weight: 600; font-size: 15px; }
+.astro__mini p { font-size: 14.5px; color: var(--ink-2); margin-top: 4px; }
+.astro__note { font-size: 14px; color: var(--ink-2); background: var(--frame); border-radius: 12px; padding: 12px 14px; margin-bottom: 22px; }
+.astro__hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+.astro__cta { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); text-align: center; }
+.astro__cta p { font-size: 14.5px; color: var(--ink-2); margin: 0 auto 14px; max-width: 30em; }
+.astro__about { margin-top: 16px; }
+@media (max-width: 720px) {
+  .astro__main { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; }
+  .astro__title { font-size: 22px; }
 }
 
 [hidden] { display: none !important; }
