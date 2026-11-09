@@ -33,7 +33,7 @@
       <a href="{{ .BaseURL }}/"{{ if eq .Page.Type "home" }} aria-current="page"{{ end }}>Главная</a>
       <a href="{{ .BaseURL }}/rasklad/"{{ if eq .Page.Slug "rasklad" }} aria-current="page"{{ end }}>Расклад</a>
       <a href="{{ .BaseURL }}/blog/"{{ if or (eq .Page.Type "blog") (eq .Page.Type "article") }} aria-current="page"{{ end }}>Блог</a>
-      <a href="https://t.me/{{ .Settings.channel }}">Канал</a>
+      <a href="https://t.me/{{ .Settings.channel }}" target="_blank" rel="noopener">Канал</a>
     </nav>
   </header>
 
@@ -43,7 +43,7 @@
 
   <footer class="foot">
     <span>{{ .Settings.name }}</span>
-    <span><a href="https://t.me/{{ .Settings.tg }}">Записаться</a> · <a href="https://t.me/{{ .Settings.channel }}">Канал</a></span>
+    <span><a href="https://t.me/{{ .Settings.tg }}">Записаться</a> · <a href="https://t.me/{{ .Settings.channel }}" target="_blank" rel="noopener">Канал</a></span>
   </footer>
 </div>
 <script src="{{ .AssetsBase }}/site.js" defer></script>

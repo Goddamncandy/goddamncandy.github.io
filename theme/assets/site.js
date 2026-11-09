@@ -15,3 +15,11 @@
   }, { rootMargin: '0px 0px -10% 0px' });
   blocks.forEach(function (b) { io.observe(b); });
 })();
+
+// Ссылки на канал из текста страниц и статей открываются в новой вкладке (в шаблонах это задано прямо в разметке).
+(function () {
+  document.querySelectorAll('a[href*="t.me/everveyratarot"]').forEach(function (a) {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+})();
