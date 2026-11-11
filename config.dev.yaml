@@ -66,6 +66,7 @@ settings:
   city: "Ижевск"
   tg: "everveyra"            # личка для записи, без @
   channel: "everveyratarot"  # канал, без @
+  vk: "https://vk.ru/everveyra"   # страница ВКонтакте, полный адрес
   price: "3 000 ₽"
   yandex_verification: "5672146a517756e7"   # Вебмастер, аккаунт Антона (добавлен 09.11.2026)
   metrika_id: ""                 # в локальной сборке не считаем

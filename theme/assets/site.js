@@ -34,3 +34,36 @@
     if (goal) window.ym(window.METRIKA_ID, 'reachGoal', goal);
   });
 })();
+
+// Шапка телефона: на главной появляется, когда первый экран ушёл под неё; бургер открывает боковое меню.
+(function () {
+  var bar = document.querySelector('.mbar');
+  var drawer = document.getElementById('menu');
+  if (!bar || !drawer) return;
+  var hero = document.querySelector('.hero');
+  if (hero && bar.classList.contains('mbar--auto')) {
+    var tick = false;
+    var update = function () {
+      tick = false;
+      bar.classList.toggle('is-shown', hero.getBoundingClientRect().bottom <= bar.offsetHeight);
+    };
+    window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+  var burger = bar.querySelector('.burger');
+  var close = drawer.querySelector('.drawer__x');
+  function set(open) {
+    drawer.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    (open ? close : burger).focus({ preventScroll: true });
+  }
+  burger.addEventListener('click', function () { set(true); });
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('[data-close]') || e.target.closest('a')) set(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) set(false);
+  });
+})();

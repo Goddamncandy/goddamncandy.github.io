@@ -27,5 +27,6 @@ mkdir -p "$DIST"
 "$NOTEPUB_BIN" validate --config "$CONFIG" --rules ./rules.yaml --resolve ./.notepub/artifacts/resolve.json --links --markdown
 "$NOTEPUB_BIN" build --config "$CONFIG" --rules ./rules.yaml --dist "$DIST" --artifacts ./.notepub/artifacts
 touch "$DIST/.nojekyll"
+cp theme/assets/favicon.ico "$DIST/favicon.ico"   # Яндекс и старые браузеры спрашивают /favicon.ico в корне
 [[ "$CONFIG" == "./config.yaml" ]] && echo "veralozhkina.ru" > "$DIST/CNAME"
 echo "Готово: $DIST — не закоммичено и не опубликовано"

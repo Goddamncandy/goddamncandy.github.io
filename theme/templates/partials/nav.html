@@ -1,0 +1,8 @@
+{{- /* Ссылки разделов: в шапке на компьютере и в боковом меню на телефоне. */ -}}
+{{ define "nav-links" }}
+      <a href="{{ .BaseURL }}/"{{ if eq .Page.Type "home" }} aria-current="page"{{ end }}>Главная</a>
+      <a href="{{ .BaseURL }}/rasklad/"{{ if eq .Page.Slug "rasklad" }} aria-current="page"{{ end }}>Расклад</a>
+      <a href="{{ .BaseURL }}/astro-taro/"{{ if eq .Page.Slug "astro-taro" }} aria-current="page"{{ end }}>Астро-таро</a>
+      <a href="{{ .BaseURL }}/blog/"{{ if or (eq .Page.Type "blog") (eq .Page.Type "article") }} aria-current="page"{{ end }}>Блог</a>
+      <a href="https://t.me/{{ .Settings.channel }}" target="_blank" rel="noopener">Канал</a>
+{{ end }}
