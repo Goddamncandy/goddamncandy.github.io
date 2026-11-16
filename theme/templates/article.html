@@ -1,6 +1,6 @@
 <section class="sec">
   <header class="pagehead">
-    <span class="pill"><a href="{{ .BaseURL }}/blog/">Блог</a>{{ if .FM.published_at }} · <time datetime="{{ .FM.published_at }}">{{ if .FM.date_label }}{{ .FM.date_label }}{{ else }}{{ .FM.published_at }}{{ end }}</time>{{ end }}</span>
+    <span class="pill"><a href="{{ .BaseURL }}/blog/">Блог</a></span>
     <h1 class="h1--article">{{ .Page.Title }}</h1>
     {{- if .FM.lead }}<p class="lead">{{ .FM.lead }}</p>{{ end }}
   </header>

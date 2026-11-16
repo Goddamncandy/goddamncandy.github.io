@@ -7,7 +7,6 @@
   <div class="cards cards--list">
     {{- range .Collections.posts_all.Items }}
     <a class="card" href="{{ printf "%s%s" $.BaseURL .PublicPath }}">
-      {{- if .FM.date_label }}<span class="card__date">{{ .FM.date_label }}</span>{{ end }}
       <span class="card__title">{{ .Title }}</span>
       <span class="card__text">{{ .Description }}</span>
     </a>
